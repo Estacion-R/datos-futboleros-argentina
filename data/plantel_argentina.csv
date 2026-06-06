@@ -1,0 +1,27 @@
+shirt,name,pos,dob,age,club,mv,caps,goals_nt,pob
+23,Emiliano Martínez,Goalkeeper,1992-09-02,33,Aston Villa,€15.00m,59,0,Mar del Plata
+12,Gerónimo Rulli,Goalkeeper,1992-05-20,34,Olympique Marseille,€8.00m,7,0,La Plata
+1,Juan Musso,Goalkeeper,1994-05-06,32,Atlético de Madrid,€3.00m,3,0,San Nicolás de los Arroyos
+13,Cristian Romero,Centre-Back,1998-04-27,28,Tottenham Hotspur,€50.00m,49,3,Córdoba
+6,Lisandro Martínez,Centre-Back,1998-01-18,28,Manchester United,€40.00m,26,1,Gualeguay
+2,Leonardo Balerdi,Centre-Back,1999-01-26,27,Olympique Marseille,€18.00m,11,0,Villa Mercedes
+25,Facundo Medina,Centre-Back,1999-05-28,27,Olympique Marseille,€18.00m,7,0,Villa Fiorito
+19,Nicolás Otamendi,Centre-Back,1988-02-12,38,SL Benfica,€1.00m,130,8,El Talar
+3,Nicolás Tagliafico,Left-Back,1992-08-31,33,Olympique Lyon,€5.00m,75,1,Rafael Calzada
+26,Nahuel Molina,Right-Back,1998-04-06,28,Atlético de Madrid,€15.00m,58,1,Embalse
+4,Gonzalo Montiel,Right-Back,1997-01-01,29,CA River Plate,€4.50m,38,2,González Catán
+5,Leandro Paredes,Defensive Midfield,1994-06-29,31,CA Boca Juniors,€5.00m,77,5,San Justo
+24,Enzo Fernández,Central Midfield,2001-01-17,25,Chelsea FC,€90.00m,40,6,San Martín
+20,Alexis Mac Allister,Central Midfield,1998-12-24,27,Liverpool FC,€80.00m,44,6,Santa Rosa
+8,Valentín Barco,Central Midfield,2004-07-23,21,RC Strasbourg Alsace,€35.00m,2,1,25 de Mayo
+14,Exequiel Palacios,Central Midfield,1998-10-05,27,Bayer 04 Leverkusen,€25.00m,38,0,Famaillá
+7,Rodrigo De Paul,Central Midfield,1994-05-24,32,Inter Miami CF,€15.00m,85,2,Sarandí
+18,Nico Paz,Attacking Midfield,2004-09-08,21,Como 1907,€65.00m,8,1,Santa Cruz de Tenerife
+11,Giovani Lo Celso,Attacking Midfield,1996-04-09,30,Real Betis Balompié,€10.00m,65,4,Rosario
+15,Nico González,Left Winger,1998-04-06,28,Atlético de Madrid,€24.00m,50,6,Belén de Escobar
+16,Thiago Almada,Left Winger,2001-04-26,25,Atlético de Madrid,€20.00m,14,4,Ciudadela
+17,Giuliano Simeone,Right Winger,2002-12-18,23,Atlético de Madrid,€40.00m,11,1,Roma
+10,Lionel Messi,Right Winger,1987-06-24,38,Inter Miami CF,€15.00m,198,116,Rosario
+9,Julián Álvarez,Centre-Forward,2000-01-31,26,Atlético de Madrid,€90.00m,51,14,Calchín
+22,Lautaro Martínez,Centre-Forward,1997-08-22,28,Inter Milan,€85.00m,75,36,Bahía Blanca
+21,José Manuel López,Centre-Forward,2000-12-06,25,Sociedade Esportiva Palmeiras,€25.00m,3,0,San Lorenzo

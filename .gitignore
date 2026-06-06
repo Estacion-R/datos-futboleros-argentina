@@ -1,0 +1,23 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# Quarto
+.quarto/
+_site/
+
+# Datos crudos / pesados
+data/raw/
+
+# Outputs derivados
+output/
+pruebas/
+
+# Previews (imágenes de previsualización, regenerables)
+previews/
+
+# Sistema
+.DS_Store
+Thumbs.db

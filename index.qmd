@@ -1,0 +1,280 @@
+---
+title: "El plantel de la Selección, en datos"
+subtitle: "Un recorrido por los 26 jugadores rumbo al Mundial 2026"
+author: "Estación R"
+date: today
+lang: es
+format:
+  closeread-html:
+    cr-style:
+      narrative-background-color-sidebar: "#191919"
+      narrative-text-color-sidebar: "#FFFFFF"
+      narrative-font-family: "Ubuntu, sans-serif"
+      section-background-color: "#FFFFFF"
+    embed-resources: true
+    code-tools: false
+    theme: cosmo
+    mainfont: "Ubuntu"
+    include-in-header:
+      text: |
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <style>
+          body, .cr-section, h1, h2, h3, h4 { font-family: 'Ubuntu', sans-serif; }
+          body { color: #191919; }
+          h1, h2, h3 { color: #191919; font-weight: 700; }
+          a { color: #405BFF; }
+          .cr-hl { color: #EAFF38; font-weight: 700; }
+
+          /* Las imágenes sticky nunca deben cortarse: caben enteras en el alto
+             de la ventana (arregla el mapa y la "mochila" que aparecían cortados). */
+          .cr-section img, .cr-poster img {
+            max-height: 86vh; width: auto !important; height: auto;
+            object-fit: contain;
+          }
+
+          /* Líneas del equipo: cada una aparece al scrollear hacia ella */
+          .linea-reveal { scroll-margin-top: 2rem; margin-block: 3rem; }
+          /* Bloques sin reveal (muy altos para la animación) */
+          .galeria-todos { scroll-margin-top: 2rem; margin-block: 3rem; }
+          .convocados-nota {
+            max-width: 820px; margin: 0 auto 1.5rem; padding: .9rem 1.2rem;
+            background: #F7F7F7; border-left: 6px solid #405BFF; border-radius: 10px;
+            color: #191919; font-size: 1.02rem;
+          }
+          @supports (animation-timeline: view()) {
+            @media (prefers-reduced-motion: no-preference) {
+              .linea-reveal {
+                animation: lineaReveal linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 65%;
+              }
+            }
+          }
+          @keyframes lineaReveal {
+            from { opacity: 0; transform: translateY(48px) scale(.985); }
+            to   { opacity: 1; transform: translateY(0)    scale(1);    }
+          }
+        </style>
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/00_prep.R")
+library(ggplot2)
+ok_font <- tryCatch({
+  library(showtext); sysfonts::font_add_google("Ubuntu", "ubuntu")
+  showtext_auto(); showtext_opts(dpi = 150); TRUE
+}, error = function(e) FALSE)
+FF <- if (ok_font) "ubuntu" else "sans"
+source("R/_edad_plot.R")
+source("R/02_galeria.R")
+```
+
+::: {style="max-width:720px;margin:0 auto;padding:3rem 1.5rem;font-family:Ubuntu,sans-serif;"}
+Argentina llega al Mundial 2026 como **campeón del mundo vigente**. Detrás de la camiseta hay 26 jugadores: algunos que recién asoman, otros que ya lo ganaron todo. Recorré el plantel a través de los datos.
+
+*Datos: Transfermarkt · Lista oficial de 26 anunciada por Scaloni el 28/05/2026.*
+:::
+
+
+:::: cr-section
+## El plantel en la cancha
+
+Los **26 convocados** de Scaloni, organizados por línea. Un equipo que defiende la corona. @cr-cancha-arq
+
+**Arqueros (3):** [**Emiliano Martínez**]{.cr-hl} · Gerónimo Rulli · Juan Musso
+
+El Dibu es indiscutido: 59 partidos con la Selección y una Copa del Mundo en el arco. Los otros dos cubren las espaldas. @cr-cancha-arq
+
+**Defensores (8):** [**Otamendi**]{.cr-hl} (130 caps) · Tagliafico · Molina · Montiel · Cristian Romero · Lisandro Martínez · Balerdi · Medina
+
+El veterano Otamendi ancla la línea. Romero y Lisandro ya son titulares en los mejores clubes del mundo. @cr-cancha-def
+
+**Mediocampistas (8):** [**De Paul**]{.cr-hl} (85 caps) · Paredes · Lo Celso · Mac Allister · Enzo Fernández · Palacios · Nico Paz · Barco
+
+De Paul conduce; Paredes hace el trabajo sucio. Mac Allister llega desde Liverpool. Barco, con solo 2 caps, es el futuro arrancando del banco. @cr-cancha-mid
+
+**Delanteros (7):** [**Messi**]{.cr-hl} (198 caps) · Lautaro · Julián Álvarez · Nico González · Simeone · Almada · J.M. López
+
+Messi en la derecha, Lautaro como 9. Entre los dos, más de 170 goles con la camiseta celeste y blanca. @cr-cancha-fwd
+
+El equipo dentro del equipo: [**Scaloni**]{.cr-hl} y los suyos. Tres ídolos reconvertidos en técnicos —Aimar, Samuel y Ayala— más Tocalli en los arqueros. El mismo cuerpo que armó la era campeona, intacto. @cr-cancha-ct
+
+::: {#cr-cancha-arq}
+![](cards/10_cancha_arq.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-cancha-def}
+![](cards/10_cancha_def.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-cancha-mid}
+![](cards/10_cancha_mid.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-cancha-fwd}
+![](cards/10_cancha_fwd.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-cancha-ct}
+![](cards/10_cancha_ct.png){width="88%" fig-align="center"}
+:::
+::::
+
+:::: cr-section
+¿Cuántos de estos 26 ya saben lo que es salir campeón del mundo? Nada menos que [**17**]{.cr-hl} **(65%)**: A pesar de la renovación, la base de Qatar 2022 sigue de pie. @cr-camp
+
+En color, los que levantaron la copa; en gris, los que todavía no.
+
+**Dato:** Nico González y Lo Celso habían sido citados en 2022, pero se lesionaron antes del torneo y no llegaron a entrar. @cr-camp
+
+::: {#cr-camp}
+![](cards/07_campeones.png){width="80%" fig-align="center"}
+:::
+::::
+
+:::: cr-section
+## Origen del plantel
+
+Solo **7 provincias** del país aportan jugadores al plantel. El mapa lo dice todo: la producción futbolera argentina no está repartida de forma pareja por el territorio. @cr-mapa-base
+
+De los 26 convocados, [**14**]{.cr-hl} nacieron en la **provincia de Buenos Aires**: más de la mitad del plantel salió del mismo territorio.
+
+*Emi Martínez · Rulli · Musso · Medina · Montiel · Otamendi · Tagliafico · Enzo Fernández · Paredes · De Paul · Barco · Lautaro Martínez · Nico González · Almada* @cr-mapa-ba
+
+**Córdoba y Santa Fe** aportan 3 jugadores cada una.
+
+**Córdoba:** Cristian Romero · Julián Álvarez · Nahuel Molina
+
+**Santa Fe:** Lo Celso · José Manuel López · Messi @cr-mapa-cbsf
+
+El resto se reparte entre **La Pampa, Entre Ríos, San Luis y Tucumán**: 1 jugador cada una.
+
+**La Pampa:** Mac Allister · **Entre Ríos:** Lisandro Martínez · **San Luis:** Balerdi · **Tucumán:** Palacios @cr-mapa-resto
+
+**Dato:** Ninguno de los convocados nació en la **Ciudad Autónoma de Buenos Aires**, capital del país. @cr-mapa-ba
+
+Y hay dos casos de "exportación al revés": **Nico Paz** nació en Tenerife (España) y **Giuliano Simeone** en Roma (Italia). @cr-mapa-full
+
+::: {#cr-mapa-base}
+![](cards/01_mapa_base.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-mapa-ba}
+![](cards/01_mapa_hl_ba.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-mapa-cbsf}
+![](cards/01_mapa_hl_cbsf.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-mapa-resto}
+![](cards/01_mapa_hl_resto.png){width="88%" fig-align="center"}
+:::
+
+::: {#cr-mapa-full}
+![](cards/01_origen.png){width="92%" fig-align="center"}
+:::
+::::
+
+:::: cr-section
+La edad promedio del plantel es de [**`r dato_edad$prom` años**]{.cr-hl}. @cr-edad
+
+En los extremos conviven dos generaciones: **Barco y Nico Paz**, los más jóvenes con apenas `r dato_edad$joven$age` años, y **Otamendi y Messi**, los veteranos con `r dato_edad$veterano$age`. Diecisiete años de diferencia separan los extremos. **Pasá el mouse** sobre cualquier punto para ver de quién se trata. @cr-edad
+
+::: {#cr-edad}
+```{r}
+#| label: edad-plot
+#| fig-align: center
+build_edad_girafe(plantel, prom = dato_edad$prom, FF = FF, scale = 1.3,
+                  width_svg = 10, height_svg = 6.5)
+```
+:::
+::::
+
+:::: cr-section
+## Experiencia mundialista
+
+Más allá de la edad, la experiencia tiene otra dimensión: los **partidos con la Selección** y los **Mundiales jugados**. Si los cruzamos, el plantel se parte en dos mundos. @cr-scatter
+
+**Otamendi,** el veterano, es el único con tres copas encima (2014, 2018 y 2022). En la base, **7 jugadores** todavía no disputaron ninguno. @cr-scatter
+
+**Messi**, un universo aparte: [**198 partidos y 5 Mundiales**]{.cr-hl} en sus hombros. @cr-scatter
+
+::: {#cr-scatter}
+```{r}
+#| label: scatter-mundiales-interactivo
+source("R/09_scatter_mundiales.R")
+build_scatter_girafe()
+```
+:::
+::::
+
+:::: cr-section
+Es una Selección de exportación: [**24 de los 26**]{.cr-hl} juegan fuera del país. @cr-ext
+
+Solo dos militan en la liga local: **Paredes** (Boca) y **Montiel** (River). @cr-ext
+
+::: {#cr-ext}
+![](cards/04_exterior.png){width="80%" fig-align="center"}
+:::
+::::
+
+:::: cr-section
+## El valor del plantel
+
+El plantel suma **€`r round(sum(plantel$mv_eur))` millones** de valor de mercado. @cr-packing
+
+**Enzo Fernández** y **Julián Álvarez** encabezan con €90 millones cada uno; **Lautaro Martínez** los pisa con €85. @cr-packing
+
+Cada burbuja es un jugador y su tamaño es proporcional al valor de mercado; los colores agrupan por posición. **Pasá el mouse** (o tocá, en celular) sobre cualquiera para ver su posición, club, valor y partidos con la Selección. @cr-packing
+
+::: {#cr-packing}
+```{r}
+#| label: valor-packing-interactivo
+source("R/08_valor_packing.R")
+build_packing_girafe()
+```
+:::
+::::
+
+::: {style="max-width:880px;margin:0 auto;padding:3rem 1.5rem 1rem;font-family:Ubuntu,sans-serif;"}
+## ¿En qué ligas juegan?
+
+Es una Selección de las grandes ligas. **LaLiga** es la más representada, empujada sobre todo por el Atlético de Madrid; detrás aparecen la **Premier League** y la **Ligue 1**. La liga argentina aporta solo dos. Acá está cada liga con **quiénes** la integran y **cuántos** son:
+
+```{r}
+#| label: ligas-tabla
+source("R/06_ligas_tabla.R")
+build_ligas_tabla()
+```
+:::
+
+:::: {style="max-width:760px;margin:0 auto;padding:2rem 1.5rem 3rem;font-family:Ubuntu,sans-serif;"}
+## Los goles
+
+El plantel hizo **`r total_goles_nt` goles** con la Selección mayor, pero la repartija es de otro planeta: **Messi** metió 116, él solo, más de la mitad de todos. Así queda el ranking de goleadores, con el capitán rompiendo la escala:
+
+::: galeria-todos
+![](cards/08_goleadores.png){width="94%" fig-align="center"}
+:::
+
+*Hecho con R (ggplot2, sf, gt, geoAr) + Quarto closeread · Estación R*
+::::
+
+:::: {style="max-width:880px;margin:0 auto;padding:3rem 1.5rem 4rem;font-family:Ubuntu,sans-serif;"}
+## Anexo: El plantel completo
+
+Los **26 convocados** por Scaloni, ordenados por partidos con la Selección.
+
+```{r}
+#| label: plantel-completo
+build_galeria_gt()
+```
+::::
