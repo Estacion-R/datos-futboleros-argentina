@@ -33,6 +33,20 @@ format:
             object-fit: contain;
           }
 
+          /* htmlwidgets interactivos (girafe): expandir al ancho del sticky panel.
+             .sticky tiene margin:auto pero sin width, lo que hace que el widget
+             determine su propio tamaño. Forzamos width:100% en la cadena. */
+          .sticky-col .sticky:has(.html-widget),
+          .sticky-col .sticky:has(.html-widget) .cell,
+          .sticky-col .sticky:has(.html-widget) .cell-output-display {
+            width: 100%;
+            max-width: 100%;
+          }
+          .sticky-col .html-widget {
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+
           /* Líneas del equipo: cada una aparece al scrollear hacia ella */
           .linea-reveal { scroll-margin-top: 2rem; margin-block: 3rem; }
           /* Bloques sin reveal (muy altos para la animación) */
@@ -90,21 +104,15 @@ Los **26 convocados** de Scaloni, organizados por línea. Un equipo que defiende
 
 **Arqueros (3):** [**Emiliano Martínez**]{.cr-hl} · Gerónimo Rulli · Juan Musso
 
-El Dibu es indiscutido: 59 partidos con la Selección y una Copa del Mundo en el arco. Los otros dos cubren las espaldas. @cr-cancha-arq
+El Dibu es indiscutido: 59 partidos con la Selección y una Copa del Mundo en el arco. @cr-cancha-arq
 
-**Defensores (8):** [**Otamendi**]{.cr-hl} (130 caps) · Tagliafico · Molina · Montiel · Cristian Romero · Lisandro Martínez · Balerdi · Medina
+**Defensores (8):** [**Otamendi**]{.cr-hl} (130 partidos) · Tagliafico · Molina · Montiel · Cristian Romero · Lisandro Martínez · Balerdi · Medina @cr-cancha-def
 
-El veterano Otamendi ancla la línea. Romero y Lisandro ya son titulares en los mejores clubes del mundo. @cr-cancha-def
+**Mediocampistas (8):** [**De Paul**]{.cr-hl} (85 partidos) · Paredes · Lo Celso · Mac Allister · Enzo Fernández · Palacios · Nico Paz · Barco @cr-cancha-mid
 
-**Mediocampistas (8):** [**De Paul**]{.cr-hl} (85 caps) · Paredes · Lo Celso · Mac Allister · Enzo Fernández · Palacios · Nico Paz · Barco
+**Delanteros (7):** [**Messi**]{.cr-hl} (198 partidos) · Lautaro · Julián Álvarez · Nico González · Simeone · Almada · J.M. López @cr-cancha-fwd
 
-De Paul conduce; Paredes hace el trabajo sucio. Mac Allister llega desde Liverpool. Barco, con solo 2 caps, es el futuro arrancando del banco. @cr-cancha-mid
-
-**Delanteros (7):** [**Messi**]{.cr-hl} (198 caps) · Lautaro · Julián Álvarez · Nico González · Simeone · Almada · J.M. López
-
-Messi en la derecha, Lautaro como 9. Entre los dos, más de 170 goles con la camiseta celeste y blanca. @cr-cancha-fwd
-
-El equipo dentro del equipo: [**Scaloni**]{.cr-hl} y los suyos. Tres ídolos reconvertidos en técnicos —Aimar, Samuel y Ayala— más Tocalli en los arqueros. El mismo cuerpo que armó la era campeona, intacto. @cr-cancha-ct
+El equipo dentro del equipo: [**Scaloni**]{.cr-hl} y los suyos. Tres ídolos reconvertidos en técnicos (Aimar, Samuel y Ayala) más Tocalli en los arqueros. El mismo cuerpo que armó la era campeona, intacto. @cr-cancha-ct
 
 ::: {#cr-cancha-arq}
 ![](cards/10_cancha_arq.png){width="88%" fig-align="center"}
@@ -144,19 +152,22 @@ En color, los que levantaron la copa; en gris, los que todavía no.
 
 Solo **7 provincias** del país aportan jugadores al plantel. El mapa lo dice todo: la producción futbolera argentina no está repartida de forma pareja por el territorio. @cr-mapa-base
 
-De los 26 convocados, [**14**]{.cr-hl} nacieron en la **provincia de Buenos Aires**: más de la mitad del plantel salió del mismo territorio.
+De los 26 convocados, [**14**]{.cr-hl} nacieron en la **provincia de Buenos Aires**: más de la mitad del plantel salió del mismo territorio. @cr-mapa-ba
 
 *Emi Martínez · Rulli · Musso · Medina · Montiel · Otamendi · Tagliafico · Enzo Fernández · Paredes · De Paul · Barco · Lautaro Martínez · Nico González · Almada* @cr-mapa-ba
 
-**Córdoba y Santa Fe** aportan 3 jugadores cada una.
+· **Córdoba y Santa Fe** aportan 3 jugadores cada una. @cr-mapa-cbsf
 
-**Córdoba:** Cristian Romero · Julián Álvarez · Nahuel Molina
+· **Córdoba:** Cristian Romero · Julián Álvarez · Nahuel Molina @cr-mapa-cbsf
 
-**Santa Fe:** Lo Celso · José Manuel López · Messi @cr-mapa-cbsf
+· **Santa Fe:** Lo Celso · José Manuel López · Messi @cr-mapa-cbsf
 
-El resto se reparte entre **La Pampa, Entre Ríos, San Luis y Tucumán**: 1 jugador cada una.
+El resto se reparte entre **La Pampa, Entre Ríos, San Luis y Tucumán**: 1 jugador cada una. @cr-mapa-resto
 
-**La Pampa:** Mac Allister · **Entre Ríos:** Lisandro Martínez · **San Luis:** Balerdi · **Tucumán:** Palacios @cr-mapa-resto
+· **La Pampa:** Mac Allister 
+· **Entre Ríos:** Lisandro Martínez 
+· **San Luis:** Balerdi 
+· **Tucumán:** Palacios @cr-mapa-resto
 
 **Dato:** Ninguno de los convocados nació en la **Ciudad Autónoma de Buenos Aires**, capital del país. @cr-mapa-ba
 
@@ -192,8 +203,9 @@ En los extremos conviven dos generaciones: **Barco y Nico Paz**, los más jóven
 ```{r}
 #| label: edad-plot
 #| fig-align: center
+#| out-width: "100%"
 build_edad_girafe(plantel, prom = dato_edad$prom, FF = FF, scale = 1.3,
-                  width_svg = 10, height_svg = 6.5)
+                  width_svg = 10, height_svg = 4.5)
 ```
 :::
 ::::
@@ -210,6 +222,7 @@ Más allá de la edad, la experiencia tiene otra dimensión: los **partidos con 
 ::: {#cr-scatter}
 ```{r}
 #| label: scatter-mundiales-interactivo
+#| out-width: "100%"
 source("R/09_scatter_mundiales.R")
 build_scatter_girafe()
 ```
@@ -238,6 +251,7 @@ Cada burbuja es un jugador y su tamaño es proporcional al valor de mercado; los
 ::: {#cr-packing}
 ```{r}
 #| label: valor-packing-interactivo
+#| out-width: "100%"
 source("R/08_valor_packing.R")
 build_packing_girafe()
 ```
