@@ -450,6 +450,15 @@ rótulos finales como categoría del post).
 - **Refactor anti-hardcoded**: cuando hay un número grande visible (29, 16, etc.)
   conviene calcularlo siempre con `nrow(plantel)` / agregados de `00_prep.R`. Hoy
   rompe en el próximo cambio si está hardcodeado.
+- **Fuente en girafe (ggiraph)**: `showtext` está apagado dentro de `build_*_girafe()`
+  para evitar que vectorice el texto a paths SVG y lo infle. Para usar Ubuntu en el
+  widget: (1) llamar `gdtools::register_gfont("Ubuntu")` al inicio de la función;
+  (2) usar `"Ubuntu"` como `base_family` en `theme_minimal()` y en TODOS los geoms
+  de texto (`geom_text_repel`, `annotate("text")`, `label.family` en ggforce). El HTML
+  de Quarto carga Ubuntu de Google Fonts, así el browser la resuelve sin incrustar paths.
+  Si se deja `"sans"`, el SVG queda con la fuente serif del sistema.
+- **Workflow GitHub**: Pablo revisa desde GitHub, no desde archivos locales. Siempre
+  hacer commit+push inmediatamente después de cada cambio. Confirmar con link al commit.
 
 ## Cómo regenerar todo
 ```bash
