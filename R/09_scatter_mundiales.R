@@ -333,17 +333,17 @@ build_scatter_girafe <- function(width_svg = 8, height_svg = 6.8) {
            "Otamendi es el único con 3 (2014 · 2018 · 2022).\n",
            n_sin, " jugadores aún no disputaron un Mundial.\n",
            "Datos: Transfermarkt + Wikipedia · Estación R")) +
-    theme_minimal() +
+    theme_minimal(base_family = "sans") +
     theme(
       plot.background   = element_rect(fill = ER_BLANCO, color = NA),
       panel.background  = element_rect(fill = ER_BLANCO, color = NA),
       plot.title.position   = "plot",
       plot.caption.position = "plot",
-      plot.title    = element_text(face = "bold", size = 22, color = ER_NEGRO),
-      plot.subtitle = element_text(size = 12, color = GRIS_TXT, margin = margin(t = 4, b = 12)),
-      plot.caption  = element_text(size = 10, color = GRIS_TXT, hjust = 0,
+      plot.title    = element_text(face = "bold", size = 27, color = ER_NEGRO),
+      plot.subtitle = element_text(size = 14, color = GRIS_TXT, margin = margin(t = 4, b = 12)),
+      plot.caption  = element_text(size = 11, color = GRIS_TXT, hjust = 0,
                                    lineheight = 1.1, margin = margin(t = 14)),
-      plot.margin   = margin(20, 34, 20, 34),
+      plot.margin   = margin(34, 34, 26, 34),
       axis.title.x  = element_text(size = 12, color = GRIS_TXT, margin = margin(t = 8)),
       axis.title.y  = element_text(size = 12, color = GRIS_TXT, margin = margin(r = 8)),
       axis.text     = element_text(size = 11, color = ER_NEGRO),

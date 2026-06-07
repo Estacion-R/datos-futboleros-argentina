@@ -259,22 +259,6 @@ build_packing_girafe()
 ::::
 
 :::: cr-section
-## ¿En qué ligas juegan?
-
-Es una Selección de las grandes ligas. [**LaLiga**]{.cr-hl} es la más representada, empujada sobre todo por el Atlético de Madrid. @cr-ligas
-
-Detrás aparecen la **Premier League** y la **Ligue 1**. La liga argentina aporta solo dos: **Paredes** (Boca) y **Montiel** (River). @cr-ligas
-
-::: {#cr-ligas}
-```{r}
-#| label: ligas-tabla
-source("R/06_ligas_tabla.R")
-build_ligas_tabla()
-```
-:::
-::::
-
-:::: cr-section
 ## Goleador
 
 El plantel hizo [**`r total_goles_nt` goles**]{.cr-hl} con la Selección mayor. @cr-goles
