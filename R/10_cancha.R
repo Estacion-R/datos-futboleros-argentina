@@ -56,7 +56,7 @@ draw_pitch <- function(canvas, W, H, mx, my) {
 
 composite_player <- function(canvas, circle_file, cx, py, PR, label = NULL,
                               highlight = TRUE, ER_AMARILLO = "#EAFF38",
-                              NM_SZ = 11, W = 960, mx = 55) {
+                              NM_SZ = 17, W = 960, mx = 55) {
   circle <- image_read(circle_file)
   if (highlight) {
     ring_r <- PR + 4
@@ -71,8 +71,9 @@ composite_player <- function(canvas, circle_file, cx, py, PR, label = NULL,
   canvas <- image_composite(canvas, circle,
                              offset = paste0("+", cx - PR, "+", py - PR))
   if (!is.null(label) && highlight) {
-    nx <- max(mx, min(W - round(nchar(label)*6) - mx,
-                      round(cx - nchar(label)*3.0)))
+    char_w <- NM_SZ * 0.55
+    nx <- max(mx, min(W - round(nchar(label) * char_w) - mx,
+                      round(cx - nchar(label) * char_w / 2)))
     canvas <- image_annotate(canvas, label,
                               gravity  = "NorthWest",
                               location = paste0("+", nx, "+", py + PR + 5),
@@ -235,17 +236,19 @@ build_cancha_ct <- function() {
 
     # Nombre
     nm  <- ct$name[i]
-    nx  <- max(mx, min(W - round(nchar(nm)*6) - mx, round(xs[i] - nchar(nm)*3.0)))
+    nm_sz <- 16; nm_cw <- nm_sz * 0.55
+    nx  <- max(mx, min(W - round(nchar(nm)*nm_cw) - mx, round(xs[i] - nchar(nm)*nm_cw/2)))
     canvas <- image_annotate(canvas, nm, gravity="NorthWest",
       location=paste0("+", nx, "+", py+PR+5),
-      size=11, font="Ubuntu", color="white", weight=700)
+      size=nm_sz, font="Ubuntu", color="white", weight=700)
 
     # Rol
     rol <- ct$rol[i]
-    rx  <- max(mx, min(W - round(nchar(rol)*5) - mx, round(xs[i] - nchar(rol)*2.5)))
+    rol_sz <- 14; rol_cw <- rol_sz * 0.55
+    rx  <- max(mx, min(W - round(nchar(rol)*rol_cw) - mx, round(xs[i] - nchar(rol)*rol_cw/2)))
     canvas <- image_annotate(canvas, rol, gravity="NorthWest",
-      location=paste0("+", rx, "+", py+PR+20),
-      size=10, font="Ubuntu", color=ER_AMARILLO, weight=400)
+      location=paste0("+", rx, "+", py+PR+26),
+      size=rol_sz, font="Ubuntu", color=ER_AMARILLO, weight=400)
   }
 
   canvas <- image_annotate(canvas,
