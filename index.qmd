@@ -258,29 +258,37 @@ build_packing_girafe()
 :::
 ::::
 
-::: {style="max-width:880px;margin:0 auto;padding:3rem 1.5rem 1rem;font-family:Ubuntu,sans-serif;"}
+:::: cr-section
 ## ¿En qué ligas juegan?
 
-Es una Selección de las grandes ligas. **LaLiga** es la más representada, empujada sobre todo por el Atlético de Madrid; detrás aparecen la **Premier League** y la **Ligue 1**. La liga argentina aporta solo dos. Acá está cada liga con **quiénes** la integran y **cuántos** son:
+Es una Selección de las grandes ligas. [**LaLiga**]{.cr-hl} es la más representada, empujada sobre todo por el Atlético de Madrid. @cr-ligas
 
+Detrás aparecen la **Premier League** y la **Ligue 1**. La liga argentina aporta solo dos: **Paredes** (Boca) y **Montiel** (River). @cr-ligas
+
+::: {#cr-ligas}
 ```{r}
 #| label: ligas-tabla
 source("R/06_ligas_tabla.R")
 build_ligas_tabla()
 ```
 :::
-
-:::: {style="max-width:760px;margin:0 auto;padding:2rem 1.5rem 3rem;font-family:Ubuntu,sans-serif;"}
-## Los goles
-
-El plantel hizo **`r total_goles_nt` goles** con la Selección mayor, pero la repartija es de otro planeta: **Messi** metió 116, él solo, más de la mitad de todos. Así queda el ranking de goleadores, con el capitán rompiendo la escala:
-
-::: galeria-todos
-![](cards/08_goleadores.png){width="94%" fig-align="center"}
-:::
-
-*Hecho con R (ggplot2, sf, gt, geoAr) + Quarto closeread · Estación R*
 ::::
+
+:::: cr-section
+## Goleador
+
+El plantel hizo [**`r total_goles_nt` goles**]{.cr-hl} con la Selección mayor. @cr-goles
+
+Pero la repartija es de otro planeta: **Messi** metió 116 él solo, más de la mitad de todos. Así queda el ranking, con el capitán rompiendo la escala. @cr-goles
+
+::: {#cr-goles}
+![](cards/08_goleadores.png){fig-align="center"}
+:::
+::::
+
+::: {style="max-width:880px;margin:0 auto;padding:1rem 1.5rem 0.5rem;font-family:Ubuntu,sans-serif;font-size:0.85rem;color:#6F6F6F;text-align:center;"}
+*Hecho con R (ggplot2, sf, gt, geoAr) + Quarto closeread · Estación R*
+:::
 
 :::: {style="max-width:880px;margin:0 auto;padding:3rem 1.5rem 4rem;font-family:Ubuntu,sans-serif;"}
 ## Anexo: El plantel completo
