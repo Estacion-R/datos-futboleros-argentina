@@ -261,6 +261,10 @@ p <- ggplot(datos, aes(x = caps, y = y_j)) +
 build_scatter_girafe <- function(width_svg = 8, height_svg = 6.8) {
   # showtext vectoriza el texto a paths e infla el widget -> apagar solo acá.
   if (ok_font) { showtext::showtext_auto(FALSE); on.exit(showtext::showtext_auto(TRUE), add = TRUE) }
+  # Registrar Ubuntu para gdtools/svglite. El HTML de Quarto ya carga Ubuntu
+  # vía Google Fonts; el SVG declara la familia y el browser la resuelve.
+  tryCatch(gdtools::register_gfont("Ubuntu"), error = function(e) NULL)
+  GF <- "Ubuntu"
 
   d <- datos |>
     dplyr::mutate(tip = paste0(
@@ -280,7 +284,7 @@ build_scatter_girafe <- function(width_svg = 8, height_svg = 6.8) {
       ggforce::geom_mark_ellipse(
         data = dd, aes(group = grupo_ggforce, label = grupo_ggforce),
         colour = clr, fill = NA, expand = unit(4, "mm"),
-        label.family = "sans", label.fontsize = 9, label.fontface = "bold",
+        label.family = GF, label.fontsize = 9, label.fontface = "bold",
         label.colour = clr, con.colour = clr, con.size = 0.45, show.legend = FALSE)
     }
   })
@@ -295,25 +299,25 @@ build_scatter_girafe <- function(width_svg = 8, height_svg = 6.8) {
     ggrepel::geom_text_repel(
       data = \(x) dplyr::filter(x, label != ""),
       aes(label = label, color = mundiales_f),
-      size = 3.3, family = "sans", fontface = "bold",
+      size = 3.3, family = GF, fontface = "bold",
       box.padding = 0.6, point.padding = 0.3,
       min.segment.length = 0.4, max.overlaps = 20, show.legend = FALSE) +
     annotate("text", x = messi$caps, y = messi$y_j - 0.95,
-             label = "5 Mundiales", hjust = 0.5, size = 3.2, fontface = "bold",
+             label = "5 Mundiales", hjust = 0.5, size = 3.2, family = GF, fontface = "bold",
              colour = MUND_COL[["5"]]) +
     annotate("text", x = -20, y = 1.55, label = "1 Mundial",
-             hjust = 0.5, size = 3.2, fontface = "bold",
+             hjust = 0.5, size = 3.2, family = GF, fontface = "bold",
              colour = MUND_COL[["1"]]) +
     annotate("segment", x = -12, xend = -3, y = 1.50, yend = 1.08,
              colour = MUND_COL[["1"]], linewidth = 0.4) +
     annotate("text", x = 22, y = -0.72, label = "Sin Mundial todavía",
-             hjust = 0.5, size = 3.2, fontface = "bold",
+             hjust = 0.5, size = 3.2, family = GF, fontface = "bold",
              colour = MUND_COL[["0"]]) +
     annotate("segment", x = 22, xend = 18, y = -0.65, yend = -0.22,
              colour = MUND_COL[["0"]], linewidth = 0.4) +
     annotate("text", x = ng$caps + 60, y = 0.62,
              label = paste0(ng$caps, " partidos, 0 Mundiales\nSe lesionó antes\nde Qatar 2022"),
-             hjust = 0, vjust = 1, size = 2.85, lineheight = 0.95, fontface = "italic",
+             hjust = 0, vjust = 1, size = 2.85, family = GF, lineheight = 0.95, fontface = "italic",
              colour = MUND_COL[["0"]]) +
     annotate("curve", x = ng$caps + 55, xend = ng$caps + 4, y = 0.5, yend = ng$y_j + 0.06,
              curvature = -0.35, arrow = arrow(length = unit(2, "mm"), type = "closed"),
@@ -333,7 +337,7 @@ build_scatter_girafe <- function(width_svg = 8, height_svg = 6.8) {
            "Otamendi es el único con 3 (2014 · 2018 · 2022).\n",
            n_sin, " jugadores aún no disputaron un Mundial.\n",
            "Datos: Transfermarkt + Wikipedia · Estación R")) +
-    theme_minimal(base_family = "sans") +
+    theme_minimal(base_family = GF) +
     theme(
       plot.background   = element_rect(fill = ER_BLANCO, color = NA),
       panel.background  = element_rect(fill = ER_BLANCO, color = NA),
