@@ -18,6 +18,10 @@ pruebas/
 # Previews (imágenes de previsualización, regenerables)
 previews/
 
+# Documentos internos de proceso (no relevantes para el repo público)
+SEED.md
+STATUS.md
+
 # Sistema
 .DS_Store
 Thumbs.db
