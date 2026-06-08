@@ -143,7 +143,7 @@ provincias_sf <- if (file.exists(geoar_cache)) {
 }
 
 mapa_data <- provincias_sf |>
-  left_join(por_provincia, by = c("nombre" = "provincia")) |>
+  left_join(por_provincia, by = join_by(nombre == provincia)) |>
   mutate(jugadores = replace_na(jugadores, 0))
 
 invisible(TRUE)

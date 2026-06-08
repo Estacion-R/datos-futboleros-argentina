@@ -76,7 +76,7 @@ parse_profile <- function(url) {
 cat("• Bajando squad page...\n")
 h_squad <- fetch_html(SQUAD_URL)
 rows    <- html_elements(h_squad, "table.items > tbody > tr")
-squad   <- map_dfr(rows, parse_squad_row)
+squad   <- map(rows, parse_squad_row) |> list_rbind()
 cat("  jugadores en la tabla:", nrow(squad), "\n")
 
 cat("• Visitando", nrow(squad), "perfiles (sleep", SLEEP, "s entre cada uno)...\n")
@@ -112,7 +112,7 @@ slugify <- function(s) {
 }
 
 cat("• Extrayendo URLs de portrait + escudo de la squad page...\n")
-img_data <- map_dfr(rows, function(tr) {
+img_data <- map(rows, function(tr) {
   name_a   <- html_element(tr, "td.hauptlink a")
   name     <- str_squish(html_text(name_a))
   portrait <- html_attr(html_element(tr, "img.bilderrahmen-fixed"), "data-src")
@@ -121,6 +121,7 @@ img_data <- map_dfr(rows, function(tr) {
   crest    <- paste0("https://tmssl.akamaized.net/images/wappen/medium/", club_id, ".png")
   tibble(name, foto_url = portrait, escudo_url = crest)
 }) |>
+  list_rbind() |>
   mutate(slug = vapply(name, slugify, character(1)),
          foto_file   = file.path("assets/fotos",   paste0(slug, ".jpg")),
          escudo_file = file.path("assets/escudos", paste0(slug, ".png")))

@@ -79,15 +79,15 @@ execute:
 ```{r}
 #| label: setup
 #| include: false
-source("R/00_prep.R")
+source("R/02_prep.R")
 library(ggplot2)
 ok_font <- tryCatch({
   library(showtext); sysfonts::font_add_google("Ubuntu", "ubuntu")
   showtext_auto(); showtext_opts(dpi = 150); TRUE
 }, error = function(e) FALSE)
 FF <- if (ok_font) "ubuntu" else "sans"
-source("R/_edad_plot.R")
-source("R/02_galeria.R")
+source("R/03_viz_edad.R")
+source("R/04_galeria.R")
 ```
 
 ::: {style="max-width:720px;margin:0 auto;padding:3rem 1.5rem;font-family:Ubuntu,sans-serif;"}
@@ -223,7 +223,7 @@ Más allá de la edad, la experiencia tiene otra dimensión: los **partidos con 
 ```{r}
 #| label: scatter-mundiales-interactivo
 #| out-width: "100%"
-source("R/09_scatter_mundiales.R")
+source("R/07_scatter.R")
 build_scatter_girafe()
 ```
 :::
@@ -252,7 +252,7 @@ Cada burbuja es un jugador y su tamaño es proporcional al valor de mercado; los
 ```{r}
 #| label: valor-packing-interactivo
 #| out-width: "100%"
-source("R/08_valor_packing.R")
+source("R/06_valor_packing.R")
 build_packing_girafe()
 ```
 :::
